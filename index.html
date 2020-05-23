@@ -7,12 +7,18 @@
     <link rel="stylesheet" href="style.css">
     <p> LASAGNA <strong>LASAGNA</strong> </p>
     <div class = "container">
-      <div class = "button">
-        <button> CLICK ME </button>
-      </div>
       <div class = "tracker">
         <label id = "clicks"> 0 </label>
       </div>
+      <button onclick="addPoints()"> HELLO </button>
     </div>
+
+    <script type="text/javascript">
+      function addPoints(){
+        var points = parseInt(document.getElementById('clicks').innerHTML);
+        document.getElementById('clicks').innerHTML = points + 1;
+      }
+
+    </script>
   </body>
 </html>
