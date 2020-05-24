@@ -1,6 +1,8 @@
 var points = 0;
 var machines = 0;
 var machineRate = 5;
+var pointPresses = 0;
+var pointPressRate = 20;
 
 function pointClick(number){
     points += number;
@@ -25,9 +27,21 @@ function buyMachine(){
     document.getElementById('machineCost').innerHTML = nextCost.toString() + " POINTS";
 }
 
+function buyPointPress(){
+    var pointPressCost = Math.floor(100 * Math.pow(1.5,pointPresses));
+    if(points >= pointPressCost){
+        pointPresses += 1;
+        points -= pointPressCost;
+        document.getElementById('points').innerHTML = points + " POINTS";
+        document.getElementById('pointPresses').innerHTML = pointPresses + " POINT PRESSES";
+    }
+    var nextCost = Math.floor(100 * Math.pow(1.5,pointPresses));
+    document.getElementById('pointPressCost').innerHTML = nextCost + " POINTS";
+}
+
 window.setInterval(function(){
 
-    addPoints(machines*machineRate)
-    document.getElementById('pps').innerHTML = Math.floor(machines*machineRate) + " POINTS PER SECOND"
+    addPoints(machines*machineRate + pointPresses * pointPressRate)
+    document.getElementById('pps').innerHTML = Math.floor(machines*machineRate + pointPresses * pointPressRate) + " POINTS PER SECOND"
 
 }, 1000);
