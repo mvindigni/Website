@@ -2,23 +2,23 @@
 <html>
   <head>
     <title>Citioweb de Marty</title>
+    <script src="js/loop.js"></script>
   </head>
   <body>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <p> LASAGNA <strong>LASAGNA</strong> </p>
     <div class = "container">
       <div class = "tracker">
-        <label id = "clicks"> 0 </label>
+        <label id = "points"> 0 POINTS </label>
       </div>
-      <button onclick="addPoints()"> HELLO </button>
+      <div>
+        <button onclick="pointClick(1)"> CLICK ME </button>
+        <button onclick="buyMachine()"> BUY POINT MACHINE: <span id="machineCost"> 20 POINTS </span></button>
+      </div>
+      <div>
+        <label id="pps"> 0  POINTS PER SECOND </label>
+      </div>
+
     </div>
-
-    <script type="text/javascript">
-      function addPoints(){
-        var points = parseInt(document.getElementById('clicks').innerHTML);
-        document.getElementById('clicks').innerHTML = points + 1;
-      }
-
-    </script>
   </body>
 </html>
