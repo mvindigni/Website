@@ -4,7 +4,7 @@
     <title>Citioweb de Marty</title>
     <script src="js/loop.js"></script>
   </head>
-  <body>
+  <body onload="hidePrestige()">
     <link rel="stylesheet" href="css/style.css">
     <p> LASAGNA <strong>LASAGNA</strong> </p>
     <div class = "container">
@@ -12,14 +12,17 @@
         <label id = "points"> 0.0 POINTS  </label>
         <label id = "machines"> 0 MACHINES  </label>
         <label id = "pointPresses"> 0 POINT PRESSES  </label>
+        <label id ="prestigePoints">0 PRESTIGE POINTS </label>
         <br><br>
       </div>
       <div>
-        <button onclick="pointClick(1)"> CLICK ME </button>
+        <button onclick="pointClick(clickRate)"> CLICK ME </button>
         <br><br>
         <button onclick="buyMachine()"> BUY POINT MACHINE: <span id="machineCost"> 20 POINTS </span></button>
         <br><br>
         <button onclick="buyPointPress()"> BUY POINT PRESS: <span id="pointPressCost"> 100 POINTS </span></button>
+        <br><br>
+        <button id = "prestige" onclick="buyPrestige()"> PRESTIGE </button>
         <br><br>
       </div>
       <label id="pps"> 0  POINTS PER SECOND </label>
