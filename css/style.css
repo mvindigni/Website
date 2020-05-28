@@ -1,0 +1,14 @@
+body {
+  background-color: BLACK;
+  color: WHITE;
+}
+
+.container{
+  height: 300px;
+  position: relative;
+  border: 3px solid white;
+}
+
+button:active{
+  background-color: #F1F1F1;
+}
