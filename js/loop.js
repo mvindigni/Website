@@ -24,14 +24,14 @@ window.pointClick = pointClick;
  * Subtracts points from user's balance based on machine cost, updates next machine cost
  */
 export function buyMachine(){
-    if(player.points >= player.machine_cost){
+    if(player.points >= player.machineCost){
         player.machines += 1;
         player.points -= player.machineCost;
         $('#points').text(player.points + " POINTS");
         $('#machines').text(player.machines + " MACHINES");
     };
-    player.machine_cost = Math.floor(20 * Math.pow(1.5, player.machines));
-    $('machineCost').text(player.machineCost + " POINTS");
+    player.machineCost = Math.floor(20 * Math.pow(1.5, player.machines));
+    $('#machineCost').text(player.machineCost + " POINTS");
 }
 window.buyMachine = buyMachine;
 
@@ -46,7 +46,7 @@ export function buyPointPress(){
         $('#points').text(player.points + " POINTS");
         $('#pointPresses').text(player.presses + " POINT PRESSES");
     }
-    player.press_cost = Math.floor(20 * Math.pow(1.5, player.presses));
+    player.pressCost = Math.floor(100 * Math.pow(1.5, player.presses));
     $('#pointPressCost').text(player.pressCost + " POINTS");
 }
 window.buyPointPress = buyPointPress;
