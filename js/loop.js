@@ -1,41 +1,50 @@
 import * as math from "./math.js"
 
+/**
+ * @Event User clicks on CLICK ME button
+ * adds points based on player's click power
+ */
 export function pointClick(){
     player.points += player.clickPower;
-    document.getElementById('points').innerHTML = player.points + " POINTS";
+    $('#points').text(player.points + " POINTS");
 };
-
 window.pointClick = pointClick;
 
+/**
+ * @Event User clicks on BUY POINT MACHINE button
+ * Subtracts points from user's balance based on machine cost, updates next machine cost
+ */
 export function buyMachine(){
     if(player.points >= player.machine_cost){
         player.machines += 1;
         player.points -= player.machineCost;
-        document.getElementById('points').innerHTML = player.points + " POINTS";
-        document.getElementById('machines').innerHTML = player.machines + " MACHINES";
+        $('#points').text(player.points + " POINTS");
+        $('#machines').text(player.machines + " MACHINES");
     };
     player.machine_cost = Math.floor(20 * Math.pow(1.5, player.machines));
-    document.getElementById('machineCost').innerHTML = player.machineCost + " POINTS";
+    $('machineCost').text(player.machineCost + " POINTS");
 }
-
 window.buyMachine = buyMachine;
 
+/**
+ * @Event User clicks on BUY POINT PRESS button
+ * Subtracts points from user's balance based on press cost, updates next press cost
+ */
 export function buyPointPress(){
     if(player.points >= player.pressCost){
-        player.pointPresses += 1;
+        player.presses += 1;
         player.points -= player.pressCost;
-        document.getElementById('points').innerHTML = player.points + " POINTS";
-        document.getElementById('pointPresses').innerHTML = player.presses + " POINT PRESSES";
+        $('#points').text(player.points + " POINTS");
+        $('#pointPresses').text(player.presses + " POINT PRESSES");
     }
     player.press_cost = Math.floor(20 * Math.pow(1.5, player.presses));
-    document.getElementById('pointPressCost').innerHTML = player.pressCost + " POINTS";
+    $('#pointPressCost').text(player.pressCost + " POINTS");
 }
-
 window.buyPointPress = buyPointPress;
 
-window.setInterval(function(){
-    player.points += math.netRate()
-    document.getElementById('pps').innerHTML = math.netRate() + " POINTS PER SECOND"
-    document.getElementById('points').innerHTMl = player.points;
-}, 1000);
+/**
+ * Game Loop
+ * Update users points and points per second every 1000 milliseconds
+ */
+window.setInterval(() => math.updatePoints(), 1000);
 
