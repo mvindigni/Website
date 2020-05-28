@@ -1,47 +1,41 @@
-var points = 0;
-var machines = 0;
-var machineRate = 5;
-var pointPresses = 0;
-var pointPressRate = 20;
+import * as math from "./math.js"
 
-function pointClick(number){
-    points += number;
-    document.getElementById('points').innerHTML = points + " POINTS";
+export function pointClick(){
+    player.points += player.clickPower;
+    document.getElementById('points').innerHTML = player.points + " POINTS";
 };
 
-function addPoints(number){
-    points += number;
-    document.getElementById('points').innerHTML = points + " POINTS";
-}
+window.pointClick = pointClick;
 
-function buyMachine(){
-    var machineCost = Math.floor(20 * Math.pow(1.5, machines));
-    if(points >= machineCost){
-        machines += 1;
-        points -= machineCost;
-        document.getElementById('points').innerHTML = points + " POINTS";
-        document.getElementById('machines').innerHTML = machines + " MACHINES";
+export function buyMachine(){
+    if(player.points >= player.machine_cost){
+        player.machines += 1;
+        player.points -= player.machineCost;
+        document.getElementById('points').innerHTML = player.points + " POINTS";
+        document.getElementById('machines').innerHTML = player.machines + " MACHINES";
     };
-
-    var nextCost = Math.floor(20 * Math.pow(1.5, machines));
-    document.getElementById('machineCost').innerHTML = nextCost.toString() + " POINTS";
+    player.machine_cost = Math.floor(20 * Math.pow(1.5, player.machines));
+    document.getElementById('machineCost').innerHTML = player.machineCost + " POINTS";
 }
 
-function buyPointPress(){
-    var pointPressCost = Math.floor(100 * Math.pow(1.5,pointPresses));
-    if(points >= pointPressCost){
-        pointPresses += 1;
-        points -= pointPressCost;
-        document.getElementById('points').innerHTML = points + " POINTS";
-        document.getElementById('pointPresses').innerHTML = pointPresses + " POINT PRESSES";
+window.buyMachine = buyMachine;
+
+export function buyPointPress(){
+    if(player.points >= player.pressCost){
+        player.pointPresses += 1;
+        player.points -= player.pressCost;
+        document.getElementById('points').innerHTML = player.points + " POINTS";
+        document.getElementById('pointPresses').innerHTML = player.presses + " POINT PRESSES";
     }
-    var nextCost = Math.floor(100 * Math.pow(1.5,pointPresses));
-    document.getElementById('pointPressCost').innerHTML = nextCost + " POINTS";
+    player.press_cost = Math.floor(20 * Math.pow(1.5, player.presses));
+    document.getElementById('pointPressCost').innerHTML = player.pressCost + " POINTS";
 }
+
+window.buyPointPress = buyPointPress;
 
 window.setInterval(function(){
-
-    addPoints(machines*machineRate + pointPresses * pointPressRate)
-    document.getElementById('pps').innerHTML = Math.floor(machines*machineRate + pointPresses * pointPressRate) + " POINTS PER SECOND"
-
+    player.points += math.netRate()
+    document.getElementById('pps').innerHTML = math.netRate() + " POINTS PER SECOND"
+    document.getElementById('points').innerHTMl = player.points;
 }, 1000);
+
