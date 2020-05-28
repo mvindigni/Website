@@ -1,6 +1,15 @@
 import * as math from "./math.js"
 
 /**
+ * @Event Onload event
+ * Hides prestige button
+ */
+window.addEventListener("load", function(){
+    $("#prestige").hide();
+    $("#prestigePoints").hide();
+})
+
+/**
  * @Event User clicks on CLICK ME button
  * adds points based on player's click power
  */
