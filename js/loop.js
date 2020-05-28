@@ -47,4 +47,3 @@ window.buyPointPress = buyPointPress;
  * Update users points and points per second every 1000 milliseconds
  */
 window.setInterval(() => math.updatePoints(), 1000);
-
