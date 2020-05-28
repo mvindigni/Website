@@ -1,47 +1,58 @@
-var points = 0;
-var machines = 0;
-var machineRate = 5;
-var pointPresses = 0;
-var pointPressRate = 20;
+import * as math from "./math.js"
 
-function pointClick(number){
-    points += number;
-    document.getElementById('points').innerHTML = points + " POINTS";
+/**
+ * @Event Onload event
+ * Hides prestige button
+ */
+window.addEventListener("load", function(){
+    $("#prestige").hide();
+    $("#prestigePoints").hide();
+})
+
+/**
+ * @Event User clicks on CLICK ME button
+ * adds points based on player's click power
+ */
+export function pointClick(){
+    player.points += player.clickPower;
+    $('#points').text(player.points + " POINTS");
 };
+window.pointClick = pointClick;
 
-function addPoints(number){
-    points += number;
-    document.getElementById('points').innerHTML = points + " POINTS";
-}
-
-function buyMachine(){
-    var machineCost = Math.floor(20 * Math.pow(1.5, machines));
-    if(points >= machineCost){
-        machines += 1;
-        points -= machineCost;
-        document.getElementById('points').innerHTML = points + " POINTS";
-        document.getElementById('machines').innerHTML = machines + " MACHINES";
+/**
+ * @Event User clicks on BUY POINT MACHINE button
+ * Subtracts points from user's balance based on machine cost, updates next machine cost
+ */
+export function buyMachine(){
+    if(player.points >= player.machine_cost){
+        player.machines += 1;
+        player.points -= player.machineCost;
+        $('#points').text(player.points + " POINTS");
+        $('#machines').text(player.machines + " MACHINES");
     };
-
-    var nextCost = Math.floor(20 * Math.pow(1.5, machines));
-    document.getElementById('machineCost').innerHTML = nextCost.toString() + " POINTS";
+    player.machine_cost = Math.floor(20 * Math.pow(1.5, player.machines));
+    $('machineCost').text(player.machineCost + " POINTS");
 }
+window.buyMachine = buyMachine;
 
-function buyPointPress(){
-    var pointPressCost = Math.floor(100 * Math.pow(1.5,pointPresses));
-    if(points >= pointPressCost){
-        pointPresses += 1;
-        points -= pointPressCost;
-        document.getElementById('points').innerHTML = points + " POINTS";
-        document.getElementById('pointPresses').innerHTML = pointPresses + " POINT PRESSES";
+/**
+ * @Event User clicks on BUY POINT PRESS button
+ * Subtracts points from user's balance based on press cost, updates next press cost
+ */
+export function buyPointPress(){
+    if(player.points >= player.pressCost){
+        player.presses += 1;
+        player.points -= player.pressCost;
+        $('#points').text(player.points + " POINTS");
+        $('#pointPresses').text(player.presses + " POINT PRESSES");
     }
-    var nextCost = Math.floor(100 * Math.pow(1.5,pointPresses));
-    document.getElementById('pointPressCost').innerHTML = nextCost + " POINTS";
+    player.press_cost = Math.floor(20 * Math.pow(1.5, player.presses));
+    $('#pointPressCost').text(player.pressCost + " POINTS");
 }
+window.buyPointPress = buyPointPress;
 
-window.setInterval(function(){
-
-    addPoints(machines*machineRate + pointPresses * pointPressRate)
-    document.getElementById('pps').innerHTML = Math.floor(machines*machineRate + pointPresses * pointPressRate) + " POINTS PER SECOND"
-
-}, 1000);
+/**
+ * Game Loop
+ * Update users points and points per second every 1000 milliseconds
+ */
+window.setInterval(() => math.updatePoints(), 1000);
