@@ -1,89 +1,58 @@
-let points = 0;
-let machines = 0;
-let machineRate = 5;
-let machineBaseCost = 20;
-let machineCost = machineBaseCost;
-let pointPresses = 0;
-let pointPressRate = 20;
-let pointPressBaseCost = 100;
-let pointPressCost = pointPressBaseCost;
-let clickRate = 1;
-let prestigePoints = 0;
-let pointsPerSecond = (machines * machineRate + pointPresses * pointPressRate) * (1 + prestigePoints * 0.1);
-let prestigeNotUnlocked = true;
+import * as math from "./math.js"
 
-function hidePrestige(){
-    document.getElementById("prestige").style.display = "none";
-    document.getElementById("prestigePoints").style.display = "none";
-}
+/**
+ * @Event Onload event
+ * Hides prestige button
+ */
+window.addEventListener("load", function(){
+    $("#prestige").hide();
+    $("#prestigePoints").hide();
+})
 
-function pointClick(number){
-    points += number;
-    document.getElementById('points').innerHTML = points + " POINTS";
+/**
+ * @Event User clicks on CLICK ME button
+ * adds points based on player's click power
+ */
+export function pointClick(){
+    player.points += player.clickPower;
+    $('#points').text(player.points + " POINTS");
 };
+window.pointClick = pointClick;
 
-function addPoints(number){
-    points += number;
-    document.getElementById('points').innerHTML = points + " POINTS";
-}
-
-function buyMachine(){
-
-    if(points >= machineCost){
-        machines += 1;
-        points -= machineCost;
-        document.getElementById('points').innerHTML = points + " POINTS";
-        document.getElementById('machines').innerHTML = machines + " MACHINES";
+/**
+ * @Event User clicks on BUY POINT MACHINE button
+ * Subtracts points from user's balance based on machine cost, updates next machine cost
+ */
+export function buyMachine(){
+    if(player.points >= player.machine_cost){
+        player.machines += 1;
+        player.points -= player.machineCost;
+        $('#points').text(player.points + " POINTS");
+        $('#machines').text(player.machines + " MACHINES");
     };
-
-    machineCost = Math.floor(machineBaseCost * Math.pow(1.5, machines));
-    document.getElementById('machineCost').innerHTML = machineCost + " POINTS";
+    player.machine_cost = Math.floor(20 * Math.pow(1.5, player.machines));
+    $('machineCost').text(player.machineCost + " POINTS");
 }
+window.buyMachine = buyMachine;
 
-function buyPointPress(){
-    pointPressCost = Math.floor(pointPressBaseCost * Math.pow(1.5,pointPresses));
-
-    if(points >= pointPressCost){
-        pointPresses += 1;
-        points -= pointPressCost;
-        document.getElementById('points').innerHTML = points + " POINTS";
-        document.getElementById('pointPresses').innerHTML = pointPresses + " POINT PRESSES";
+/**
+ * @Event User clicks on BUY POINT PRESS button
+ * Subtracts points from user's balance based on press cost, updates next press cost
+ */
+export function buyPointPress(){
+    if(player.points >= player.pressCost){
+        player.presses += 1;
+        player.points -= player.pressCost;
+        $('#points').text(player.points + " POINTS");
+        $('#pointPresses').text(player.presses + " POINT PRESSES");
     }
-    pointPressCost = Math.floor(pointPressBaseCost * Math.pow(1.5,pointPresses));
-    document.getElementById('pointPressCost').innerHTML = pointPressCost + " POINTS";
+    player.press_cost = Math.floor(20 * Math.pow(1.5, player.presses));
+    $('#pointPressCost').text(player.pressCost + " POINTS");
 }
+window.buyPointPress = buyPointPress;
 
-function buyPrestige(){
-    prestigePoints = Math.floor(pointsPerSecond / 10) + prestigePoints;
-    points = 0;
-    machines = 0;
-    pointPresses = 0;
-    machineCost = machineBaseCost;
-    pointPressCost = pointPressBaseCost;
-
-
-
-    document.getElementById('points').innerHTML = points + " POINTS";
-    document.getElementById('machines').innerHTML = machines + " Machines";
-    document.getElementById('pointPresses').innerHTML = pointPresses + " POINT PRESSES";
-    document.getElementById('prestigePoints').innerHTML = prestigePoints + " PRESTIGE POINTS";
-    document.getElementById('machineCost').innerHTML = machineCost + " POINTS";
-    document.getElementById('pointPressCost').innerHTML = pointPressCost + " POINTS";
-}
-
-
-window.setInterval(function(){
-
-    pointsPerSecond = (machines * machineRate + pointPresses * pointPressRate) * (1 + prestigePoints * 0.1);
-    addPoints(pointsPerSecond)
-    document.getElementById('pps').innerHTML = Math.floor(pointsPerSecond) + " POINTS PER SECOND"
-
-    if(points >= 100 && prestigeNotUnlocked){
-        document.getElementById("prestige").style.display = "block";
-        document.getElementById("prestigePoints").style.display = "block";
-        prestigeNotUnlocked = false;
-
-
-        //Check to see if enough points have been acquired to unlock prestige, if so show prestige elements -> prestigeNotUnlocked changed to hopefully not run this section again?
-    }
-}, 1000);
+/**
+ * Game Loop
+ * Update users points and points per second every 1000 milliseconds
+ */
+window.setInterval(() => math.updatePoints(), 1000);

@@ -2,21 +2,25 @@
 <html>
   <head>
     <title>Citioweb de Marty</title>
-    <script src="js/loop.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/player.js"></script>
+    <script type="module", src="js/math.js"></script>
+    <script type="module", src="js/loop.js"></script>
   </head>
-  <body onload="hidePrestige()">
+  <body>
     <link rel="stylesheet" href="css/style.css">
     <p> LASAGNA <strong>LASAGNA</strong> </p>
     <div class = "container">
       <div class = "tracker">
-        <label id = "points"> 0.0 POINTS  </label>
+        <br>
+        <label id = "points"> 0 POINTS  </label>
         <label id = "machines"> 0 MACHINES  </label>
         <label id = "pointPresses"> 0 POINT PRESSES  </label>
         <label id ="prestigePoints">0 PRESTIGE POINTS </label>
         <br><br>
       </div>
       <div>
-        <button onclick="pointClick(clickRate)"> CLICK ME </button>
+        <button id="pointButton" onclick="pointClick()"> CLICK ME </button>
         <br><br>
         <button onclick="buyMachine()"> BUY POINT MACHINE: <span id="machineCost"> 20 POINTS </span></button>
         <br><br>
@@ -26,7 +30,6 @@
         <br><br>
       </div>
       <label id="pps"> 0  POINTS PER SECOND </label>
-
     </div>
   </body>
 </html>
