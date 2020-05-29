@@ -1,13 +1,20 @@
 let player = {
     points: 0,
-    clickPower: 1,
+    clickPower: 10000,
 
     machines: 0,
-    machineCost: 20,
-    machinePower: 5,
+    machinesBaseCost: 20,
+    machinesCost: 20,
+    machinesPower: 5,
 
     presses : 0,
-    pressPower : 20,
-    pressCost : 100,
+    pressesBaseCost : 100,
+    pressesCost : 100,
+    pressesPower : 20,
+
+    printers : 0,
+    printersBaseCost : 1000,
+    printersCost : 1000,
+    printersPower : 100,
 }
 
