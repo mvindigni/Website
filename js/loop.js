@@ -20,36 +20,32 @@ export function pointClick(){
 window.pointClick = pointClick;
 
 /**
- * @Event User clicks on BUY POINT MACHINE button
- * Subtracts points from user's balance based on machine cost, updates next machine cost
+ * @Event User clicks on a button used to purchase passive point generation
+ * Subtracts points from user's balance based on cost and updates next cost
  */
-export function buyMachine(){
-    if(player.points >= player.machineCost){
-        player.machines += 1;
-        player.points -= player.machineCost;
-        $('#points').text(player.points + " POINTS");
-        $('#machines').text(player.machines + " MACHINES");
-    };
-    player.machineCost = Math.floor(20 * Math.pow(1.5, player.machines));
-    $('#machineCost').text(player.machineCost + " POINTS");
-}
-window.buyMachine = buyMachine;
+export function generatorClick(){
 
-/**
- * @Event User clicks on BUY POINT PRESS button
- * Subtracts points from user's balance based on press cost, updates next press cost
- */
-export function buyPointPress(){
-    if(player.points >= player.pressCost){
-        player.presses += 1;
-        player.points -= player.pressCost;
-        $('#points').text(player.points + " POINTS");
-        $('#pointPresses').text(player.presses + " POINT PRESSES");
-    }
-    player.pressCost = Math.floor(100 * Math.pow(1.5, player.presses));
-    $('#pointPressCost').text(player.pressCost + " POINTS");
+    $(function(){
+
+        //Gives you the data-pointGenerator value for this button ie "presses" or "machines"
+        $(".purchaseButton").on("click", function(){
+        let pointGenerator = $(this).attr("data-pointGenerator");
+
+        if(player.points >= player[pointGenerator + "Cost"]){
+            player[pointGenerator]++;
+            player.points -= player[pointGenerator + "Cost"];
+            $("#points").text(player.points + " POINTS");
+            $("#" + pointGenerator).text(player[pointGenerator] + " POINT " +  pointGenerator.toUpperCase())
+            player[pointGenerator + "Cost"] = Math.floor(player[pointGenerator + "BaseCost"] * 1.5**player[pointGenerator]);
+            $("#" + pointGenerator + "Cost").text(player[pointGenerator + "Cost"] + " POINTS");
+        }
+        });
+
+
+    });
+
 }
-window.buyPointPress = buyPointPress;
+window.generatorClick = generatorClick;
 
 /**
  * Game Loop

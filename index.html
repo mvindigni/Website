@@ -14,20 +14,26 @@
       <div class = "tracker">
         <br>
         <label id = "points"> 0 POINTS  </label>
-        <label id = "machines"> 0 MACHINES  </label>
-        <label id = "pointPresses"> 0 POINT PRESSES  </label>
-        <label id ="prestigePoints">0 PRESTIGE POINTS </label>
+        <label id = "machines"> 0 POINT MACHINES  </label>
+        <label id = "presses"> 0 POINT PRESSES  </label>
+        <label id = "printers"> 0 POINT PRINTERS </label>
+        <label id ="prestigePoints"> 0 PRESTIGE POINTS </label>
         <br><br>
       </div>
       <div>
         <button id="pointButton" onclick="pointClick()"> CLICK ME </button>
         <br><br>
-        <button onclick="buyMachine()"> BUY POINT MACHINE: <span id="machineCost"> 20 POINTS </span></button>
+        <button class = "purchaseButton" data-pointGenerator = "machines"> BUY POINT MACHINE:<span id = "machinesCost"> 20 POINTS </span> </button>
         <br><br>
-        <button onclick="buyPointPress()"> BUY POINT PRESS: <span id="pointPressCost"> 100 POINTS </span></button>
+        <button class = "purchaseButton" data-pointGenerator = "presses"> BUY POINT PRESS: <span id = "pressesCost"> 100 POINTS </span></button>
+        <br><br>
+        <button class = "purchaseButton" data-pointGenerator = "printers">BUY POINT PRINTER: <span id = "printersCost"> 1000 POINTS</span></button>
         <br><br>
         <button id = "prestige" onclick="buyPrestige()"> PRESTIGE </button>
         <br><br>
+        <script>
+          $(".purchaseButton").click(() => generatorClick());
+        </script>
       </div>
       <label id="pps"> 0  POINTS PER SECOND </label>
     </div>
