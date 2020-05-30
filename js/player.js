@@ -17,6 +17,11 @@ let player = {
     printersCost : 1000,
     printersPower : 100,
 
+    babas : 0,
+    babasBaseCost : 5000,
+    babasCost : 5000,
+    babasPower : 500,
+
     prestigePoints : 0,
 }
 
