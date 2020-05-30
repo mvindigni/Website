@@ -63,6 +63,7 @@ export function buyPrestige(){
 
     player.points = 0;
     $("#points").text(player.points + " POINTS");
+    $("#prestigePoints").show();
     $("#prestigePoints").text(player.prestigePoints + " PRESTIGE POINTS");
 };
 
