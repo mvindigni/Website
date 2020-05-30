@@ -16,5 +16,7 @@ let player = {
     printersBaseCost : 1000,
     printersCost : 1000,
     printersPower : 100,
+
+    prestigePoints : 0,
 }
 

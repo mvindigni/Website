@@ -41,11 +41,33 @@ export function generatorClick(){
         }
         });
 
-
     });
 
-}
+};
 window.generatorClick = generatorClick;
+
+export function buyPrestige(){
+    player.prestigePoints = Math.floor(math.netRate() * 0.1);
+    /**For each element with the class "purchaseButton", find the data-pointGenerator value and then use that to set the
+    * player's values for that generator to 0 (for how many they own) and their base cost (for their cost).
+    * Finally, change the html values for each item that is displayed
+    */
+    $(".purchaseButton").each(function(){
+        player[($(this).attr("data-pointGenerator"))] = 0;
+        player[($(this).attr("data-pointGenerator")) + "Cost"] =  player[($(this).attr("data-pointGenerator")) + "BaseCost"]
+        $("#" + ($(this).attr("data-pointGenerator"))).text(player[($(this).attr("data-pointGenerator"))] + " POINT " +  ($(this).attr("data-pointGenerator")).toUpperCase());
+        //Breaking the above line down with machines as an example: for every element with the id machines, change the text to be "the number of machines + "Point" + "machines"
+         $("#" + ($(this).attr("data-pointGenerator")) + "Cost").text(player[($(this).attr("data-pointGenerator")) + "Cost"] + " POINTS");
+    })
+
+
+    player.points = 0;
+    $("#points").text(player.points + " POINTS");
+    $("#prestigePoints").text(player.prestigePoints + " PRESTIGE POINTS");
+};
+
+window.buyPrestige = buyPrestige;
+
 
 /**
  * Game Loop
