@@ -20,6 +20,13 @@ export function save(){
 window.save = save;
 
 export function load(){
+    //Check if user had prestige points
+    $(function(){
+        if(window.localStorage.getItem("prestigePoints") > 0 && window.localStorage.getItem("prestigePoints") != null){
+            $("#prestigePoints").show();
+        }
+    })
+
     //Get saved points
     player.points = parseInt(window.localStorage.getItem("points"));
 
@@ -31,8 +38,7 @@ export function load(){
             player[($(this).attr("data-pointGenerator"))] + " POINT " +  ($(this).attr("data-pointGenerator")).toUpperCase()
         );
     });
-
-    // player.prestigePoints = window.localStorage.getItem("prestigePoints");
-    // $("#prestigePoints").text(player.prestigePoints + " PRESTIGE POINTS");
+    player.prestigePoints = window.localStorage.getItem("prestigePoints");
+    $("#prestigePoints").text(player.prestigePoints + " PRESTIGE POINTS");
 }
 window.load = load;
