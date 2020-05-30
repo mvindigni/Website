@@ -17,6 +17,7 @@
         <label id = "machines"> 0 POINT MACHINES  </label>
         <label id = "presses"> 0 POINT PRESSES  </label>
         <label id = "printers"> 0 POINT PRINTERS </label>
+        <label id = "babas"> 0 POINT BABAS </label>
         <label id ="prestigePoints"> 0 PRESTIGE POINTS </label>
         <br><br>
       </div>
@@ -29,12 +30,14 @@
         <br><br>
         <button class = "purchaseButton" data-pointGenerator = "printers">BUY POINT PRINTER: <span id = "printersCost"> 1000 POINTS</span></button>
         <br><br>
+        <button class = "purchaseButton" data-pointGenerator = "babas"> BUY BABA: <span id = "babasCost"> 5000 POINTS </span></button>
+        <br><br>
         <button id = "prestige" onclick="buyPrestige()"> PRESTIGE </button>
         <br><br>
         <script>
           $(function(){
             $(".purchaseButton").click(() => generatorClick());
-          })
+          });
         </script>
       </div>
       <label id="pps"> 0  POINTS PER SECOND </label>
