@@ -3,8 +3,9 @@ let prestigeNotUnlocked = true;
 export function netRate(){
     let val =   player.machinesPower * player.machines +
                 player.pressesPower * player.presses +
-                player.printersPower * player.printers
-                ;
+                player.printersPower * player.printers +
+                player.babasPower * player.babas
+                * (1 + (player.prestigePoints * 0.1));
     return val;
 }
 
@@ -13,7 +14,7 @@ export function updatePoints(){
     $(function(){
         $('#points').text(player.points + " POINTS");
         $('#pps').text(netRate() + " POINTS PER SECOND");
-        if(player.points >= 100 && prestigeNotUnlocked) {
+        if(netRate() >= 100 && prestigeNotUnlocked) {
             $("#prestige").show();
             $("#prestigePoints").show();
             prestigeNotUnlocked = false;
