@@ -16,5 +16,10 @@ let player = {
     printersBaseCost : 1000,
     printersCost : 1000,
     printersPower : 100,
+
+    babas : 0,
+    babasBaseCost : 5000,
+    babasCost : 5000,
+    babasPower : 500,
 }
 
