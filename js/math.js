@@ -3,7 +3,8 @@ let prestigeNotUnlocked = true;
 export function netRate(){
     let val =   player.machinesPower * player.machines +
                 player.pressesPower * player.presses +
-                player.printersPower * player.printers
+                player.printersPower * player.printers +
+                player.babasPower * player.babas
                 ;
     return val;
 }
