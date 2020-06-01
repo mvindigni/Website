@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Citioweb de Marty</title>
+        <script>
+            let sound = new Audio("../resources/sounds/csgohs.wav");
+            sound.volume = .2
+        </script>
+    </head>
+    <body>
+        <link rel="stylesheet" href="../resources/css/style.css">
+        <p>
+            CSGO <strong>POG</strong>
+        </p>
+        <div style = "float: right">
+            <button id="backButton" onclick = "window.location = 'index.html';">RETURN</button>
+        </div>
+        <br>
+        <div class="container">
+            <div style="margin-left: 35%">
+                <img src="../resources/images/csgohs_transparent.png" onclick="headshot()">
+            </div>
+        </div>
+        <script>
+            function headshot(){
+                if(!sound.ended){
+                    sound.currentTime = 0;
+                }
+                sound.play();
+            }
+        </script>
+    </body>
+</html>
