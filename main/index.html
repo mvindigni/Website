@@ -10,13 +10,53 @@
   </head>
   <body>
     <link rel="stylesheet" href="../resources/css/style.css">
-    <p> LASAGNA <strong>LASAGNA</strong> </p>
+    <h1> LASAGNA <strong>LASAGNA</strong> </h1>
     <button class = "storageButton" onclick = save()>SAVE</button>
     <button class = "storageButton" onclick = load()>LOAD</button>
     <div style = "float: right">
       <button id="csgoButton" onclick = "window.location = 'csgo.html';">AIM PRACTICE</button>
     </div>
-    <div class = "container">
+    <div class = "container" id="container1">
+      <div class ="container1Box" id="c1Box1">
+        <div class = "costBox">
+          POINT MACHINE: &nbsp&nbsp<span id = "machinesCost"> 20 POINTS </span>
+        </div>
+        <div class ="displayBox"></div>
+        <div class="buttonBox">
+        <button class = "purchaseButton" data-pointGenerator = "machines"> BUY POINT MACHINE</button>
+        </div>
+      </div>
+      <div class ="container1Box" id="c2Box1">
+        <div class = "costBox">
+          POINT PRESS: &nbsp&nbsp <span id = "pressesCost"> 100 POINTS </span>
+        </div>
+        <div class = "displayBox"></div>
+        <div class = "buttonBox">
+          <button class = "purchaseButton" data-pointGenerator = "presses"> BUY POINT PRESS</button>
+        </div>
+      </div>
+      <div class ="container1Box" id="c3Box1">
+        <div class = "costBox">
+          POINT PRINTER: &nbsp&nbsp <span id = "printersCost"> 1000 POINTS</span>
+        </div>
+        <div class = "displayBox"></div>
+        <div class = "buttonBox">
+          <button class = "purchaseButton" data-pointGenerator = "printers">BUY POINT PRINTER</button>
+        </div>
+      </div>
+      <div class = "container1Box" id="c4Box1">
+        <div class = "costBox">
+          BABA: &nbsp&nbsp <span id = "babasCost"> 5000 POINTS </span>
+        </div>
+        <div class = "displayBox"></div>
+        <div class = "buttonBox">
+          <button class = "purchaseButton" data-pointGenerator = "babas"> BUY BABA</button>
+        </div>
+      </div>
+      <div class ="container1Box" id="c5Box1">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, omnis?
+      </div>
+    </div>
       <div class = "tracker">
         <br>
         <label id = "points"> 0 POINTS  </label>
@@ -30,13 +70,10 @@
       <div>
         <button id="pointButton" onclick="pointClick()"> CLICK ME </button>
         <br><br>
-        <button class = "purchaseButton" data-pointGenerator = "machines"> BUY POINT MACHINE:<span id = "machinesCost"> 20 POINTS </span> </button>
+
         <br><br>
-        <button class = "purchaseButton" data-pointGenerator = "presses"> BUY POINT PRESS: <span id = "pressesCost"> 100 POINTS </span></button>
         <br><br>
-        <button class = "purchaseButton" data-pointGenerator = "printers">BUY POINT PRINTER: <span id = "printersCost"> 1000 POINTS</span></button>
         <br><br>
-        <button class = "purchaseButton" data-pointGenerator = "babas"> BUY BABA: <span id = "babasCost"> 5000 POINTS </span></button>
         <br><br>
         <button id = "prestige" onclick="buyPrestige()"> PRESTIGE </button>
         <br><br>
@@ -47,6 +84,5 @@
         </script>
       </div>
       <label id="pps"> 0  POINTS PER SECOND </label>
-    </div>
   </body>
 </html>

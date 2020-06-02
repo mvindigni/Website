@@ -3,12 +3,43 @@ body {
   color: WHITE;
 }
 
-.container{
-  height: 350px;
-  position: relative;
-  border: 3px solid white;
+.storageButton{
+  margin-bottom: 5px;
 }
 
-button:active{
-  background-color: #F1F1F1;
+.container{
+  height: 400px;
+  border: white 1px solid;
+}
+
+#container1 div{
+  display: flex;
+  border: 1px white solid;
+  width: 400px;
+}
+
+#container1 {
+  display: flex;
+}
+
+.container1Box {
+  display: flex;
+  flex-direction: column;
+}
+.costBox{
+  border: transparent !important;
+}
+.displayBox{
+  border: transparent !important;
+  flex-grow: 2;
+}
+.buttonBox{
+  border: transparent !important;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.purchaseButton{
+  margin-bottom: 5px;
+  margin-right: 5px;
 }
