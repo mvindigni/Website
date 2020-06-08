@@ -42,4 +42,14 @@ body {
 .purchaseButton{
   margin-bottom: 5px;
   margin-right: 5px;
+  background-color: whitesmoke;
+  color: black;
+  text-align: center;
+  border: none;
 }
+
+.purchaseButton:active{
+  border: none;
+  background-color: black;
+}
+

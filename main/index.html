@@ -16,6 +16,16 @@
     <div style = "float: right">
       <button id="csgoButton" onclick = "window.location = 'csgo.html';">AIM PRACTICE</button>
     </div>
+    <div class = "tracker">
+      <br>
+      <label id = "points"> 0 POINTS  </label>
+      <label id = "machines"> 0 POINT MACHINES  </label>
+      <label id = "presses"> 0 POINT PRESSES  </label>
+      <label id = "printers"> 0 POINT PRINTERS </label>
+      <label id = "babas"> 0 POINT BABAS </label>
+      <label id ="prestigePoints"> 0 PRESTIGE POINTS </label>
+      <br><br>
+    </div>
     <div class = "container" id="container1">
       <div class ="container1Box" id="c1Box1">
         <div class = "costBox">
@@ -57,32 +67,24 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, omnis?
       </div>
     </div>
-      <div class = "tracker">
-        <br>
-        <label id = "points"> 0 POINTS  </label>
-        <label id = "machines"> 0 POINT MACHINES  </label>
-        <label id = "presses"> 0 POINT PRESSES  </label>
-        <label id = "printers"> 0 POINT PRINTERS </label>
-        <label id = "babas"> 0 POINT BABAS </label>
-        <label id ="prestigePoints"> 0 PRESTIGE POINTS </label>
-        <br><br>
-      </div>
-      <div>
-        <button id="pointButton" onclick="pointClick()"> CLICK ME </button>
-        <br><br>
-
-        <br><br>
-        <br><br>
-        <br><br>
-        <br><br>
-        <button id = "prestige" onclick="buyPrestige()"> PRESTIGE </button>
-        <br><br>
-        <script>
-          $(function(){
-            $(".purchaseButton").click(() => generatorClick());
-          });
-        </script>
-      </div>
-      <label id="pps"> 0  POINTS PER SECOND </label>
+    <div>
+      <button id="pointButton" onclick="pointClick()"> CLICK ME </button>
+      <br><br>
+      <br><br>
+      <br><br>
+      <br><br>
+      <br><br>
+      <button id = "prestige" onclick="buyPrestige()"> PRESTIGE </button>
+      <br><br>
+      <script>
+        $(function(){
+          $(".purchaseButton").each(function(){
+            let pointGenerator = $(this).attr("data-pointGenerator");
+            $(this).on("click", () => generatorClick(pointGenerator));
+          })
+        });
+      </script>
+    </div>
+    <label id="pps"> 0  POINTS PER SECOND </label>
   </body>
 </html>

@@ -23,27 +23,16 @@ window.pointClick = pointClick;
  * @Event User clicks on a button used to purchase passive point generation
  * Subtracts points from user's balance based on cost and updates next cost
  */
-export function generatorClick(){
-
-    $(function(){
-
-        //Gives you the data-pointGenerator value for this button ie "presses" or "machines"
-        $(".purchaseButton").on("click", function(){
-        let pointGenerator = $(this).attr("data-pointGenerator");
-
-        if(player.points >= player[pointGenerator + "Cost"]){
-            player[pointGenerator]++;
-            player.points -= player[pointGenerator + "Cost"];
-            $("#points").text(player.points + " POINTS");
-            $("#" + pointGenerator).text(player[pointGenerator] + " POINT " +  pointGenerator.toUpperCase())
-            player[pointGenerator + "Cost"] = Math.floor(player[pointGenerator + "BaseCost"] * 1.5**player[pointGenerator]);
-            $("#" + pointGenerator + "Cost").text(player[pointGenerator + "Cost"] + " POINTS");
-        }
-        });
-
-    });
-
-};
+export function generatorClick(pointGenerator){
+    if(player.points >= player[pointGenerator + "Cost"]){
+        player[pointGenerator] = player[pointGenerator] + 1;
+        player.points -= player[pointGenerator + "Cost"];
+        $("#points").text(player.points + " POINTS");
+        $("#" + pointGenerator).text(player[pointGenerator] + " POINT " +  pointGenerator.toUpperCase())
+        player[pointGenerator + "Cost"] = Math.floor(player[pointGenerator + "BaseCost"] * 1.5**player[pointGenerator]);
+        $("#" + pointGenerator + "Cost").text(player[pointGenerator + "Cost"] + " POINTS");
+    }
+}
 window.generatorClick = generatorClick;
 
 export function buyPrestige(){
